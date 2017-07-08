@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/padding_small"
+    android:paddingEnd="@dimen/padding_avg"
+    android:paddingStart="@dimen/padding_avg"
+    android:paddingTop="@dimen/padding_small">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/text_view_user_alphabet"
+        android:layout_width="48sp"
+        android:layout_height="48sp"
+        android:src="@drawable/profile_other"
+        android:gravity="center"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/blue_grey_500"
+
+      />
+
+    <android.support.v4.widget.Space
+        android:layout_width="@dimen/space_avg"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text_view_chat_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_huge"
+        android:background="@drawable/chat_rounded_rect_bg_other"
+        android:padding="@dimen/padding_small"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/grey_100"
+        tools:text="Hello mate ! \ntest"
+        android:layout_marginRight="@dimen/margin_huge" />
+
+</LinearLayout>

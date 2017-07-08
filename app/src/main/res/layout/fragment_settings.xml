@@ -1,0 +1,108 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_grey_200"
+    tools:context="com.ozhan.mustafa.howl.ui.fragments.SettingsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
+
+
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageViewPicture"
+                android:layout_width="240sp"
+                android:layout_height="240sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_min"
+                android:src="@drawable/profile"
+                android:gravity="center"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/blue_grey_500"/>
+
+
+            <EditText
+                android:id="@+id/edit_text_nameAndSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/imageViewPicture"
+                android:layout_marginLeft="@dimen/margin_min"
+                android:layout_marginRight="@dimen/margin_min"
+                android:backgroundTint="@color/blue_grey_500"
+
+                android:hint="@string/nameAndSurname"
+                android:inputType="text"
+
+                style="?attr/borderlessButtonStyle"
+
+                android:paddingLeft="@dimen/margin_min"
+                android:paddingRight="@dimen/margin_min"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+
+                android:textSize="22sp" />
+            <EditText
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/edit_text_nameAndSurname"
+                android:layout_marginLeft="@dimen/margin_min"
+                android:layout_marginRight="@dimen/margin_min"
+                android:backgroundTint="@color/blue_grey_500"
+                android:inputType="text"
+                android:hint="@string/status"
+
+
+                style="?attr/borderlessButtonStyle"
+
+                android:paddingLeft="@dimen/margin_min"
+                android:paddingRight="@dimen/margin_min"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button_save"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/save" />
+
+        <Button
+            android:id="@+id/button_cancel"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="@string/cancel" />
+
+
+    </RelativeLayout>
+
+</FrameLayout>

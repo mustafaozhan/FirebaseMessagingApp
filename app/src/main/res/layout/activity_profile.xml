@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ozhan.mustafa.howl.ui.activities.ProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="395dp"
+        android:layout_height="587dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageViewPicture"
+                android:layout_width="240sp"
+                android:layout_height="240sp"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_min"
+                android:gravity="center"
+                android:src="@drawable/profile"
+                app:civ_border_color="@color/blue_grey_500"
+                app:civ_border_width="1dp" />
+            <TextView
+                android:id="@+id/text_view_nameAndSurname"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageViewPicture"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/margin_min"
+                android:layout_marginRight="@dimen/margin_min"
+                android:backgroundTint="@color/blue_grey_500"
+                android:hint="@string/nameAndSurname"
+                android:paddingLeft="@dimen/margin_min"
+                android:paddingRight="@dimen/margin_min"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/status"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_nameAndSurname"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/margin_min"
+                android:layout_marginRight="@dimen/margin_min"
+                android:backgroundTint="@color/blue_grey_500"
+                android:hint="@string/status"
+                android:paddingLeft="@dimen/margin_min"
+                android:paddingRight="@dimen/margin_min"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

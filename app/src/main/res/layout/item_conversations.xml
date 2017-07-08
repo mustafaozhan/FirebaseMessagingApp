@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/padding_small"
+    android:paddingEnd="@dimen/padding_avg"
+    android:paddingStart="@dimen/padding_avg"
+    android:paddingTop="@dimen/padding_small">z
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_photo"
+            android:layout_width="48sp"
+            android:layout_height="48sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:src="@drawable/profile"
+            app:civ_border_color="@color/blue_grey_500"
+            app:civ_border_width="1dp" />
+
+        <android.support.v4.widget.Space
+            android:id="@+id/space"
+            android:layout_width="@dimen/space_avg"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/user_photo" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/space">
+
+            <TextView
+
+                android:id="@+id/text_view_username"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/grey_700"
+                tools:text="abcd@xyz.com" />
+
+            <TextView
+
+                android:id="@+id/text_view_last_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text_view_username"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+            <TextView
+
+
+
+                android:textColor="@color/white"
+                android:id="@+id/text_view_notification_count"
+                android:layout_width="21sp"
+                android:layout_height="21sp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/mustafa/Projects/Howl/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="61d1cd16094bbeff3aca83f5921519067dd9b81d">
+        <dex dex="/home/mustafa/Projects/Howl/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_16ec5d62e53c792f4bda49a8c52146481f6c526f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/mustafa/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jre7/1.1.3-2/3fe54c7558c903868351ac79b792d152bca958f2/kotlin-stdlib-jre7-1.1.3-2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3fe54c7558c903868351ac79b792d152bca958f2">
+        <dex dex="/home/mustafa/Projects/Howl/app/build/intermediates/transforms/dex/debug/folders/1000/10/kotlin-stdlib-jre7-1.1.3-2_a87fb0daebc262216384a9ed4e2b7d027e288f2c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/mustafa/Projects/Howl/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/mustafa/Projects/Howl/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_fad5de07ab522db91b4e9d7b5b1be17f8204cd64/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/mustafa/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.1.3-2/9b44c139a4ec57031e0c84ba0e49ba16df6d801c/kotlin-stdlib-1.1.3-2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9b44c139a4ec57031e0c84ba0e49ba16df6d801c">
+        <dex dex="/home/mustafa/Projects/Howl/app/build/intermediates/transforms/dex/debug/folders/1000/10/kotlin-stdlib-1.1.3-2_5d258a2953a45f5923d09f10ded95b5f6f570213/classes.dex" />
+    </item>
+
+</items>

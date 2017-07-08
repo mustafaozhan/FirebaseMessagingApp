@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/padding_small"
+    android:paddingEnd="@dimen/padding_small"
+    android:paddingStart="@dimen/padding_small"
+    android:paddingTop="@dimen/padding_small">z
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_photo"
+            android:layout_width="64sp"
+            android:layout_height="64sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:src="@drawable/profile"
+            app:civ_border_color="@color/blue_grey_500"
+            app:civ_border_width="1dp" />
+
+        <android.support.v4.widget.Space
+            android:id="@+id/space"
+            android:layout_width="@dimen/space_min"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/user_photo" />
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_before_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/space">
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_texts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text_view_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingLeft="22sp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/grey_700"
+                    android:textStyle="bold"
+                    tools:text="abcd@xyz.com"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:id="@+id/text_view_friend_request"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_view_username"
+                    android:paddingLeft="22sp"
+                    android:text="Wants to be friend with you !"
+
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relative_layout_texts">
+
+                <Button
+                    android:id="@+id/button_accept"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="6sp"
+                    android:text="Accept"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/button_ignore"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/button_accept"
+                    android:layout_toLeftOf="@+id/button_block"
+                    android:layout_toRightOf="@+id/button_accept"
+                    android:layout_toStartOf="@+id/button_block"
+                    android:padding="6sp"
+
+                    android:text="Ignore"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/button_block"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="6sp"
+                    android:text="Block"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignBottom="@id/relative_layout_before_line"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/grey_500" />
+    </RelativeLayout>
+
+</LinearLayout>
