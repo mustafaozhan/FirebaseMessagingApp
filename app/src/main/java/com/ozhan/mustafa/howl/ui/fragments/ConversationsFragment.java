@@ -89,14 +89,14 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
         String value;
 
         try {
-            value = mConversationsRecyclerAdapter.getUser(position).nameAndSurname;
+            value = mConversationsRecyclerAdapter.getUser(position).getNameAndSurname();
         } catch (Exception e) {
-            value = mConversationsRecyclerAdapter.getUser(position).email;
+            value = mConversationsRecyclerAdapter.getUser(position).getEmail();
         }
         ChatActivity.startActivity(getActivity(),
                 value,
-                mConversationsRecyclerAdapter.getUser(position).uid,
-                mConversationsRecyclerAdapter.getUser(position).firebaseToken);
+                mConversationsRecyclerAdapter.getUser(position).getUid(),
+                mConversationsRecyclerAdapter.getUser(position).getFirebaseToken());
     }
 
     @Override

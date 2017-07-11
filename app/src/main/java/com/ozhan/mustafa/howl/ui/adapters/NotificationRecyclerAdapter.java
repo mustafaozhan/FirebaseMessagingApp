@@ -55,7 +55,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         holder.mBttnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SubmitNotificationAnswer("accepted",mUsers.get(position).uid);
+                SubmitNotificationAnswer("accepted", mUsers.get(position).getUid());
                 mUsers.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, mUsers.size());
@@ -66,7 +66,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         holder.mBttnIgnore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SubmitNotificationAnswer("ignored",mUsers.get(position).uid);
+                SubmitNotificationAnswer("ignored", mUsers.get(position).getUid());
                 mUsers.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, mUsers.size());
@@ -75,7 +75,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         holder.mBttnBlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SubmitNotificationAnswer("blocked",mUsers.get(position).uid);
+                SubmitNotificationAnswer("blocked", mUsers.get(position).getUid());
                 mUsers.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, mUsers.size());
@@ -88,18 +88,18 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
 
         //  holder.txtLastMessage.setText(user.email);
         try {
-            holder.txtUsername.setText(user.nameAndSurname);
-            alphabet = user.nameAndSurname.substring(0, 1);
+            holder.txtUsername.setText(user.getNameAndSurname());
+            alphabet = user.getNameAndSurname().substring(0, 1);
         } catch (Exception e) {
-            holder.txtUsername.setText(user.email);
-            alphabet = user.email.substring(0, 1);
+            holder.txtUsername.setText(user.getEmail());
+            alphabet = user.getEmail().substring(0, 1);
         }
 
         //  holder.txtUserAlphabet.setText(alphabet);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
-        storageRef.child("profilePictures/" + user.email + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageRef.child("profilePictures/" + user.getEmail() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
 
@@ -119,7 +119,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
             public void onClick(View v) {
                 Intent intent = new Intent(holder.imgViewUser.getContext(), ProfileActivity.class);
                 Bundle b = new Bundle();
-                b.putString("key", user.email); //Your id
+                b.putString("key", user.getEmail()); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 holder.imgViewUser.getContext().startActivity(intent);
 

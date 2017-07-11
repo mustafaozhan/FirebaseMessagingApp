@@ -22,9 +22,9 @@ public class ChatActivity extends AppCompatActivity {
 
     public static void startActivity(Context context, String receiver, String receiverUid, String firebaseToken) {
         Intent intent = new Intent(context, ChatActivity.class);
-        intent.putExtra(Constants.ARG_RECEIVER, receiver);
-        intent.putExtra(Constants.ARG_RECEIVER_UID, receiverUid);
-        intent.putExtra(Constants.ARG_FIREBASE_TOKEN, firebaseToken);
+        intent.putExtra(Constants.INSTANCE.getARG_RECEIVER(), receiver);
+        intent.putExtra(Constants.INSTANCE.getARG_RECEIVER_UID(), receiverUid);
+        intent.putExtra(Constants.INSTANCE.getARG_FIREBASE_TOKEN(), firebaseToken);
         context.startActivity(intent);
     }
 
@@ -46,13 +46,13 @@ public class ChatActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         // set toolbar title
-        mToolbar.setTitle(getIntent().getExtras().getString(Constants.ARG_RECEIVER));
+        mToolbar.setTitle(getIntent().getExtras().getString(Constants.INSTANCE.getARG_RECEIVER()));
 
 
 
       //
         FirebaseDatabase.getInstance().getReference().child("users")
-                .child(getIntent().getExtras().get(Constants.ARG_RECEIVER_UID).toString())
+                .child(getIntent().getExtras().get(Constants.INSTANCE.getARG_RECEIVER_UID()).toString())
                 .child("status").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -75,9 +75,9 @@ public class ChatActivity extends AppCompatActivity {
         // set the register screen fragment
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout_content_chat,
-                ChatFragment.newInstance(getIntent().getExtras().getString(Constants.ARG_RECEIVER),
-                        getIntent().getExtras().getString(Constants.ARG_RECEIVER_UID),
-                        getIntent().getExtras().getString(Constants.ARG_FIREBASE_TOKEN)),
+                ChatFragment.newInstance(getIntent().getExtras().getString(Constants.INSTANCE.getARG_RECEIVER()),
+                        getIntent().getExtras().getString(Constants.INSTANCE.getARG_RECEIVER_UID()),
+                        getIntent().getExtras().getString(Constants.INSTANCE.getARG_FIREBASE_TOKEN())),
                 ChatFragment.class.getSimpleName());
         fragmentTransaction.commit();
     }

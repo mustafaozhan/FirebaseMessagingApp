@@ -40,7 +40,7 @@ public class LoginInteractor implements LoginContract.Interactor {
                         if (task.isSuccessful()) {
                             mOnLoginListener.onSuccess(task.getResult().toString());
                             updateFirebaseToken(task.getResult().getUser().getUid(),
-                                    new SharedPrefUtil(activity.getApplicationContext()).getString(Constants.ARG_FIREBASE_TOKEN, null));
+                                    new SharedPrefUtil(activity.getApplicationContext()).getString(Constants.INSTANCE.getARG_FIREBASE_TOKEN(), null));
                         } else {
                             mOnLoginListener.onFailure(task.getException().getMessage());
                         }
@@ -51,9 +51,9 @@ public class LoginInteractor implements LoginContract.Interactor {
     private void updateFirebaseToken(String uid, String token) {
         FirebaseDatabase.getInstance()
                 .getReference()
-                .child(Constants.ARG_USERS)
+                .child(Constants.INSTANCE.getARG_USERS())
                 .child(uid)
-                .child(Constants.ARG_FIREBASE_TOKEN)
+                .child(Constants.INSTANCE.getARG_FIREBASE_TOKEN())
                 .setValue(token);
     }
 }

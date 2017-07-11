@@ -64,14 +64,14 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
 
 
         try {
-            holder.txtUsername.setText(user.nameAndSurname);
+            holder.txtUsername.setText(user.getNameAndSurname());
         } catch (Exception e) {
-            holder.txtUsername.setText(user.email);
+            holder.txtUsername.setText(user.getEmail());
         }
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
-        storageRef.child("profilePictures/" + user.email + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageRef.child("profilePictures/" + user.getEmail() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
 
@@ -92,7 +92,7 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
             public void onClick(View v) {
                 Intent intent = new Intent(holder.imgViewUser.getContext(), ProfileActivity.class);
                 Bundle b = new Bundle();
-                b.putString("key", user.email); //Your id
+                b.putString("key", user.getEmail()); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 holder.imgViewUser.getContext().startActivity(intent);
 

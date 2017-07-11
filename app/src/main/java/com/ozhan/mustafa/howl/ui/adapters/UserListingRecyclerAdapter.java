@@ -53,18 +53,18 @@ public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListing
 
         //  holder.txtLastMessage.setText(user.email);
         try {
-            holder.txtUsername.setText(user.nameAndSurname);
-            alphabet = user.nameAndSurname.substring(0, 1);
+            holder.txtUsername.setText(user.getNameAndSurname());
+            alphabet = user.getNameAndSurname().substring(0, 1);
         } catch (Exception e) {
-            holder.txtUsername.setText(user.email);
-            alphabet = user.email.substring(0, 1);
+            holder.txtUsername.setText(user.getEmail());
+            alphabet = user.getEmail().substring(0, 1);
         }
 
         //  holder.txtUserAlphabet.setText(alphabet);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
-        storageRef.child("profilePictures/" + user.email + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageRef.child("profilePictures/" + user.getEmail() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
 
@@ -84,7 +84,7 @@ public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListing
             public void onClick(View v) {
                 Intent intent = new Intent(holder.imgViewUser.getContext(), ProfileActivity.class);
                 Bundle b = new Bundle();
-                b.putString("key", user.email); //Your id
+                b.putString("key", user.getEmail()); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 holder.imgViewUser.getContext().startActivity(intent);
 

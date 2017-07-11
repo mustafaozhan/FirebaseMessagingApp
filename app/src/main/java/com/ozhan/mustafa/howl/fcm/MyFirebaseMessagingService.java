@@ -66,8 +66,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
                     User user = dataSnapshot.getValue(User.class);
-                    title[0] =  user.nameAndSurname.toString();
-                    username[0] =  user.nameAndSurname.toString();
+                    title[0] =  user.getNameAndSurname().toString();
+                    username[0] =  user.getNameAndSurname().toString();
 
                     if(title[0].equals("")||username[0].equals(null)){
                         title[0] =  remoteMessage.getData().get("title");
@@ -127,13 +127,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                   String receiverUid,
                                   String firebaseToken) {
         Intent intent = new Intent(this, ChatActivity.class);
-        intent.putExtra(Constants.ARG_RECEIVER, receiver);
+        intent.putExtra(Constants.INSTANCE.getARG_RECEIVER(), receiver);
         String receiverUsername;
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        intent.putExtra(Constants.ARG_RECEIVER_UID, receiverUid);
-        intent.putExtra(Constants.ARG_FIREBASE_TOKEN, firebaseToken);
+        intent.putExtra(Constants.INSTANCE.getARG_RECEIVER_UID(), receiverUid);
+        intent.putExtra(Constants.INSTANCE.getARG_FIREBASE_TOKEN(), firebaseToken);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);

@@ -95,9 +95,9 @@ public class UsersFragment extends Fragment implements GetUsersContract.View, Sw
         String value;
 
         try {
-            value = mUserListingRecyclerAdapter.getUser(position).nameAndSurname;
+            value = mUserListingRecyclerAdapter.getUser(position).getNameAndSurname();
         } catch (Exception e) {
-            value = mUserListingRecyclerAdapter.getUser(position).email;
+            value = mUserListingRecyclerAdapter.getUser(position).getEmail();
         }
 //        ChatActivity.startActivity(getActivity(),
 //                value,
@@ -130,7 +130,7 @@ public class UsersFragment extends Fragment implements GetUsersContract.View, Sw
 
 
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
-        database.orderByChild("email").equalTo(mUserListingRecyclerAdapter.getUser(position).email).addChildEventListener(new ChildEventListener() {
+        database.orderByChild("email").equalTo(mUserListingRecyclerAdapter.getUser(position).getEmail()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
