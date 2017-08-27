@@ -12,3 +12,7 @@ Then you can see all people who are using Howl, add them as a friend and they ca
 List your friend and chat with them
 
 <img src="https://s19.postimg.org/rbfhgtkrn/unnamed-_4.png" width="250px" /> <img src="https://s19.postimg.org/4qk3xi8v7/unnamed-_5.png" width="250px" />
+
+You can change your profile informations and when you do not want to get notification you can log out.
+
+<img src="https://s19.postimg.org/69fi2hffn/unnamed-_6.png" width="250px" /> <img src="https://s19.postimg.org/i4x6tjfj7/unnamed-_7.png" width="250px" />
