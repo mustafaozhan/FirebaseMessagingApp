@@ -3,7 +3,7 @@ Firebase Instant Messaging and Push Notification App with Firebase Database and 
 
 Register with mail
 
-<img src="https://s19.postimg.org/4p9r2aqjn/Screenshot_20170726-215108.png" width="250px" />
+<img src="https://s19.postimg.org/eims35js3/unnamed.png" width="250px" />
 
 Then you can see all people who are using Howl, add them as a friend and they can add too.
 
