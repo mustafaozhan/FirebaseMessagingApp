@@ -1,6 +1,8 @@
 # Howl
 Firebase Instant Messaging and Push Notification App with Firebase Database and Storage technology.
 
+<a href="https://play.google.com/store/apps/details?id=com.ozhan.mustafa.howl">Google Play Store</a>
+
 Register with mail
 
 <img src="https://s19.postimg.org/eims35js3/unnamed.png" width="250px" />
