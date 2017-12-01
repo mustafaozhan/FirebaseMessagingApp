@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android'
 android {
     signingConfigs {
     }
-    compileSdkVersion 24
+    compileSdkVersion 27
     //25 di
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.ozhan.mustafa.howl"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 27
         //25 di
         versionCode 19
         versionName "2.2"
@@ -36,18 +36,19 @@ dependencies {
 
 
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.google.firebase:firebase-storage:10.2.0'
+    //noinspection GradleCompatible
+    compile 'com.google.firebase:firebase-storage:11.4.2'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.google.firebase:firebase-database:10.2.0'
-    compile 'com.google.firebase:firebase-messaging:10.2.0'
-    compile 'com.google.firebase:firebase-auth:10.2.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.android.support:appcompat-v7:27.0.1'
+    compile 'com.android.support:design:27.0.1'
+    compile 'com.google.firebase:firebase-database:11.4.2'
+    compile 'com.google.firebase:firebase-messaging:11.4.2'
+    compile 'com.google.firebase:firebase-auth:11.4.2'
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'com.google.android.gms:play-services-auth:10.2.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
-    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.google.android.gms:play-services-auth:11.6.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:support-v4:27.0.1'
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }

@@ -3,14 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     tools:context=".ui.activities.LoginActivity">
-
-    <!--<item android:id="@+id/action_search"-->
-        <!--android:orderInCategory="5"-->
-        <!--android:title="Search"-->
-        <!--android:icon="@drawable/search_icon"-->
-        <!--app:showAsAction="always|collapseActionView"-->
-        <!--app:actionViewClass="android.support.v7.widget.SearchView" />-->
-
     <item
         android:id="@+id/action_logout"
         android:orderInCategory="50"
@@ -25,3 +17,9 @@
         android:icon="@drawable/settings_icon"
         app:showAsAction="always" />
 </menu>
+    <!--<item android:id="@+id/action_search"-->
+    <!--android:orderInCategory="5"-->
+    <!--android:title="Search"-->
+    <!--android:icon="@drawable/search_icon"-->
+    <!--app:showAsAction="always|collapseActionView"-->
+    <!--app:actionViewClass="android.support.v7.widget.SearchView" />-->
