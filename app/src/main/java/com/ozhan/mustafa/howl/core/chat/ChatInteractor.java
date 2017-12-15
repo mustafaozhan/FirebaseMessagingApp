@@ -1,6 +1,7 @@
 package com.ozhan.mustafa.howl.core.chat;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.database.ChildEventListener;
@@ -32,14 +33,14 @@ public class ChatInteractor implements ChatContract.Interactor {
         this.mOnGetMessagesListener = onGetMessagesListener;
     }
 
-    public ChatInteractor(ChatContract.OnSendMessageListener onSendMessageListener,
-                          ChatContract.OnGetMessagesListener onGetMessagesListener) {
+    ChatInteractor(ChatContract.OnSendMessageListener onSendMessageListener,
+                   ChatContract.OnGetMessagesListener onGetMessagesListener) {
         this.mOnSendMessageListener = onSendMessageListener;
         this.mOnGetMessagesListener = onGetMessagesListener;
     }
 
     @Override
-    public void sendMessageToFirebaseUser(final Context context, final Chat chat, final String receiverFirebaseToken) {
+    public void sendMessageToFirebaseUser(@NonNull final Context context, @NonNull final Chat chat, @NonNull final String receiverFirebaseToken) {
         final String room_type_1 = chat.getSenderUid() + "_" + chat.getReceiverUid();
         final String room_type_2 = chat.getReceiverUid() + "_" + chat.getSenderUid();
 
@@ -91,7 +92,7 @@ public class ChatInteractor implements ChatContract.Interactor {
     }
 
     @Override
-    public void getMessageFromFirebaseUser(String senderUid, String receiverUid) {
+    public void getMessageFromFirebaseUser(@NonNull String senderUid, @NonNull String receiverUid) {
         final String room_type_1 = senderUid + "_" + receiverUid;
         final String room_type_2 = receiverUid + "_" + senderUid;
 
