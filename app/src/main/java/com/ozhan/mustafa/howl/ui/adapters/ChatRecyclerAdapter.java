@@ -83,7 +83,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
+        StorageReference storageRef = storage.getReferenceFromUrl(context.getResources().getString(R.string.storage_link));
         storageRef.child("profilePictures/" + chat.getSender() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
