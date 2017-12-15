@@ -241,7 +241,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
 
                     FirebaseStorage storage = FirebaseStorage.getInstance();
-                    StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
+                    StorageReference storageRef = storage.getReferenceFromUrl(getActivity().getResources().getString(R.string.storage_link));
                     StorageReference mountainImagesRef = storageRef.child("profilePictures/" + email[0] + ".jpg");
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     Bitmap converetdImage = getResizedBitmap(bitmap, 480);

@@ -1,5 +1,6 @@
 package com.ozhan.mustafa.howl.ui.adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -34,6 +35,7 @@ import java.util.List;
 
 public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<ConversationListingRecyclerAdapter.ViewHolder> {
     private List<User> mUsers;
+    private Context context;
 
     public ConversationListingRecyclerAdapter(List<User> users) {
         this.mUsers = users;
@@ -47,6 +49,7 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_all_user_listing, parent, false);
+        context = parent.getContext();
         return new ViewHolder(view);
     }
 
@@ -62,7 +65,6 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
 //        holder.txtUsername.setTypeface(null, Typeface.BOLD);
 
 
-
         try {
             holder.txtUsername.setText(user.getNameAndSurname());
         } catch (Exception e) {
@@ -70,7 +72,7 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
         }
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
+        StorageReference storageRef = storage.getReferenceFromUrl(context.getResources().getString(R.string.storage_link));
         storageRef.child("profilePictures/" + user.getEmail() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -123,8 +125,8 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
             super(itemView);
             imgViewUser = (ImageView) itemView.findViewById(R.id.user_photo);
             txtUsername = (TextView) itemView.findViewById(R.id.text_view_username);
-          //  txtLastMessage = (TextView) itemView.findViewById(R.id.text_view_last_message);
-           // txtNotificationCount = (TextView) itemView.findViewById(R.id.text_view_notification_count);
+            //  txtLastMessage = (TextView) itemView.findViewById(R.id.text_view_last_message);
+            // txtNotificationCount = (TextView) itemView.findViewById(R.id.text_view_notification_count);
         }
     }
 }

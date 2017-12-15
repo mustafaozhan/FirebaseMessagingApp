@@ -1,5 +1,6 @@
 package com.ozhan.mustafa.howl.ui.adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import java.util.List;
 public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_ME = 1;
     private static final int VIEW_TYPE_OTHER = 2;
-
+    private Context context;
     private List<Chat> mChats;
 
     public ChatRecyclerAdapter(List<Chat> chats) {
@@ -46,6 +47,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         RecyclerView.ViewHolder viewHolder = null;
+        context = parent.getContext();
 
         switch (viewType) {
             case VIEW_TYPE_ME:
@@ -120,7 +122,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         otherChatViewHolder.txtChatMessage.setText(chat.getMessage());
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
+        StorageReference storageRef = storage.getReferenceFromUrl(context.getResources().getString(R.string.storage_link));
         storageRef.child("profilePictures/" + chat.getSender() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

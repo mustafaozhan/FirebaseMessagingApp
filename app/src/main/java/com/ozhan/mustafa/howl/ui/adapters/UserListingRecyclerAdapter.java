@@ -1,5 +1,6 @@
 package com.ozhan.mustafa.howl.ui.adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ import java.util.List;
 
 public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListingRecyclerAdapter.ViewHolder> {
     private List<User> mUsers;
-
+    private Context context;
 
     public UserListingRecyclerAdapter(List<User> users) {
         this.mUsers = users;
@@ -42,6 +43,7 @@ public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListing
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_all_user_listing, parent, false);
+        context = parent.getContext();
         return new ViewHolder(view);
     }
 
@@ -63,7 +65,7 @@ public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListing
         //  holder.txtUserAlphabet.setText(alphabet);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
+        StorageReference storageRef = storage.getReferenceFromUrl(context.getResources().getString(R.string.storage_link));
         storageRef.child("profilePictures/" + user.getEmail() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
