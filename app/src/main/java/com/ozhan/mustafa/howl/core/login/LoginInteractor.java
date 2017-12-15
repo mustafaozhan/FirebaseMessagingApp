@@ -21,7 +21,7 @@ import static android.content.ContentValues.TAG;
 public class LoginInteractor implements LoginContract.Interactor {
     private LoginContract.OnLoginListener mOnLoginListener;
 
-    public LoginInteractor(LoginContract.OnLoginListener onLoginListener) {
+    LoginInteractor(LoginContract.OnLoginListener onLoginListener) {
         this.mOnLoginListener = onLoginListener;
     }
 
@@ -40,7 +40,7 @@ public class LoginInteractor implements LoginContract.Interactor {
                         if (task.isSuccessful()) {
                             mOnLoginListener.onSuccess(task.getResult().toString());
                             updateFirebaseToken(task.getResult().getUser().getUid(),
-                                    new SharedPrefUtil(activity.getApplicationContext()).getString(Constants.INSTANCE.getARG_FIREBASE_TOKEN(), null));
+                                    new SharedPrefUtil(activity.getApplicationContext()).getString(Constants.INSTANCE.getARG_FIREBASE_TOKEN(), ""));
                         } else {
                             mOnLoginListener.onFailure(task.getException().getMessage());
                         }

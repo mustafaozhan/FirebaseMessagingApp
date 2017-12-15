@@ -1,5 +1,6 @@
 package com.ozhan.mustafa.howl.ui.activities;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,8 +25,9 @@ import com.ozhan.mustafa.howl.R;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView mTxtViewNameAndSurname,mTxtViewStatus;
+    private TextView mTxtViewNameAndSurname, mTxtViewStatus;
     private ImageView mImgViewProfilePicture;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,17 +36,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         Bundle b = getIntent().getExtras();
         String value = null; // or other values
-        if(b != null)
+        if (b != null)
             value = b.getString("key");
 
-        mImgViewProfilePicture=(ImageView)findViewById(R.id.imageViewPicture);
-        mTxtViewNameAndSurname=(TextView)findViewById(R.id.text_view_nameAndSurname);
-        mTxtViewStatus=(TextView)findViewById(R.id.status);
+        mImgViewProfilePicture = (ImageView) findViewById(R.id.imageViewPicture);
+        mTxtViewNameAndSurname = (TextView) findViewById(R.id.text_view_nameAndSurname);
+        mTxtViewStatus = (TextView) findViewById(R.id.status);
 
-      //  mImgViewProfilePicture.setOnClickListener(this);
+        //  mImgViewProfilePicture.setOnClickListener(this);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
+        StorageReference storageRef = storage.getReferenceFromUrl(getResources().getString(R.string.storage_link));
         storageRef.child("profilePictures/" + value + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -57,30 +59,28 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                             .centerCrop()
                             .crossFade()
                             .into(mImgViewProfilePicture);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
 
                 }
             }
         });
 
 
-
-
-
         FirebaseDatabase.getInstance().getReference().child("users").orderByChild("email").equalTo(value).addChildEventListener(new ChildEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                    try {
-                        mTxtViewNameAndSurname.setText(dataSnapshot.child("nameAndSurname").getValue().toString());
-                    } catch (Exception e) {
-                       mTxtViewNameAndSurname.setText("No Name and Surname.");
-                    }
-                    try {
-                        mTxtViewStatus.setText(dataSnapshot.child("status").getValue().toString());
-                    } catch (Exception e) {
-                        mTxtViewStatus.setText("No status.");
-                    }
+                try {
+                    mTxtViewNameAndSurname.setText(dataSnapshot.child("nameAndSurname").getValue().toString());
+                } catch (Exception e) {
+                    mTxtViewNameAndSurname.setText("No Name and Surname.");
+                }
+                try {
+                    mTxtViewStatus.setText(dataSnapshot.child("status").getValue().toString());
+                } catch (Exception e) {
+                    mTxtViewStatus.setText("No status.");
+                }
             }
 
             @Override

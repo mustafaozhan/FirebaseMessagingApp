@@ -1,13 +1,14 @@
 package com.ozhan.mustafa.howl.utils
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 
 /**
  * Created by Mustafa Özhan on 3/4/17 at 12:15 PM.
  */
-
+@SuppressLint("CommitPrefEdits")
 class SharedPrefUtil(private val mContext: Context) {
     private var mSharedPreferences: SharedPreferences? = null
     private var mEditor: SharedPreferences.Editor? = null
@@ -23,7 +24,7 @@ class SharedPrefUtil(private val mContext: Context) {
         mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE)
         mEditor = mSharedPreferences!!.edit()
         mEditor!!.putString(key, value)
-        mEditor!!.commit()
+        mEditor!!.apply()
     }
 
     /**
@@ -37,8 +38,9 @@ class SharedPrefUtil(private val mContext: Context) {
         mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE)
         mEditor = mSharedPreferences!!.edit()
         mEditor!!.putInt(key, value)
-        mEditor!!.commit()
+        mEditor!!.apply()
     }
+
 
     /**
      * Save a boolean into shared preference
@@ -51,7 +53,7 @@ class SharedPrefUtil(private val mContext: Context) {
         mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE)
         mEditor = mSharedPreferences!!.edit()
         mEditor!!.putBoolean(key, value)
-        mEditor!!.commit()
+        mEditor!!.apply()
     }
 
     /**
