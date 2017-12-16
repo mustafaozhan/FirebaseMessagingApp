@@ -133,9 +133,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
                             try {
                                 Glide.with(getActivity())
-                                     .load("" + uri.toString())
-                                     .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
-                                     .into(ivImage);
+                                        .load("" + uri.toString())
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                                        .into(ivImage);
                             } catch (Exception e) {
                                 Log.d(getTag(), "Connection too slow before download picture, picture saved");
                             }
