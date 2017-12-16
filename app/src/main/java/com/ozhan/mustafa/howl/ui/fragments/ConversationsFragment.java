@@ -1,6 +1,7 @@
 package com.ozhan.mustafa.howl.ui.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -65,7 +66,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
             }
         });
 
-        ItemClickSupport.addTo(mRecyclerViewConversations)
+        ItemClickSupport.Companion.addTo(mRecyclerViewConversations)
                 .setOnItemClickListener(this);
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -85,7 +86,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
     }
 
     @Override
-    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+    public void onItemClicked(@NonNull RecyclerView recyclerView, int position, @NonNull View v) {
         String value;
 
         try {
@@ -100,7 +101,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
     }
 
     @Override
-    public void onGetAllUsersSuccess(List<User> users) {
+    public void onGetAllUsersSuccess(@NonNull List<User> users) {
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -120,7 +121,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
     }
 
     @Override
-    public void onGetAllUsersFailure(String message) {
+    public void onGetAllUsersFailure(@NonNull String message) {
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -142,7 +143,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
     }
 
     @Override
-    public void onGetChatUsersSuccess(List<User> users) {
+    public void onGetChatUsersSuccess(@NonNull List<User> users) {
         mConversationsRecyclerAdapter = new ConversationListingRecyclerAdapter(users);
         mRecyclerViewConversations.setAdapter(mConversationsRecyclerAdapter);
         mConversationsRecyclerAdapter.notifyDataSetChanged();
@@ -150,7 +151,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
     }
 
     @Override
-    public void onGetChatUsersFailure(String message) {
+    public void onGetChatUsersFailure(@NonNull String message) {
 
     }
 }
