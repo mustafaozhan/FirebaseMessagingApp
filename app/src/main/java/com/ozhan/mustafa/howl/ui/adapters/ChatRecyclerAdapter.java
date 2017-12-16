@@ -66,7 +66,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        if (TextUtils.equals(mChats.get(position).getSenderUid(),
+        if (TextUtils.equals(mChats.get(position).senderUid,
                 FirebaseAuth.getInstance().getCurrentUser().getUid())) {
             configureMyChatViewHolder((MyChatViewHolder) holder, position);
         } else {
@@ -79,12 +79,12 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         //String alphabet = chat.sender.substring(0, 1);
 
-        myChatViewHolder.txtChatMessage.setText(chat.getMessage());
+        myChatViewHolder.txtChatMessage.setText(chat.message);
 
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(context.getResources().getString(R.string.storage_link));
-        storageRef.child("profilePictures/" + chat.getSender() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageRef.child("profilePictures/" + chat.sender + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
 
@@ -93,7 +93,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             .load("" + uri.toString())
                             .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
                             .into(myChatViewHolder.imgViewUser);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
 
                 }
             }
@@ -104,7 +104,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             public void onClick(View v) {
                 Intent intent = new Intent(myChatViewHolder.imgViewUser.getContext(), ProfileActivity.class);
                 Bundle b = new Bundle();
-                b.putString("key", chat.getSender()); //Your id
+                b.putString("key", chat.sender); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 myChatViewHolder.imgViewUser.getContext().startActivity(intent);
 
@@ -119,11 +119,11 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final Chat chat = mChats.get(position);
 
 
-        otherChatViewHolder.txtChatMessage.setText(chat.getMessage());
+        otherChatViewHolder.txtChatMessage.setText(chat.message);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(context.getResources().getString(R.string.storage_link));
-        storageRef.child("profilePictures/" + chat.getSender() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageRef.child("profilePictures/" + chat.sender + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
 
@@ -132,7 +132,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             .load("" + uri.toString())
                             .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
                             .into(otherChatViewHolder.imgViewUser);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
 
                 }
             }
@@ -142,7 +142,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             public void onClick(View v) {
                 Intent intent = new Intent(otherChatViewHolder.imgViewUser.getContext(), ProfileActivity.class);
                 Bundle b = new Bundle();
-                b.putString("key", chat.getSender()); //Your id
+                b.putString("key", chat.sender); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 otherChatViewHolder.imgViewUser.getContext().startActivity(intent);
 
@@ -161,7 +161,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemViewType(int position) {
-        if (TextUtils.equals(mChats.get(position).getSenderUid(),
+        if (TextUtils.equals(mChats.get(position).senderUid,
                 FirebaseAuth.getInstance().getCurrentUser().getUid())) {
             return VIEW_TYPE_ME;
         } else {
@@ -174,7 +174,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private TextView txtChatMessage;
         private ImageView imgViewUser;
 
-        public MyChatViewHolder(View itemView) {
+        MyChatViewHolder(View itemView) {
             super(itemView);
             txtChatMessage = (TextView) itemView.findViewById(R.id.text_view_chat_message);
             imgViewUser = (ImageView) itemView.findViewById(R.id.text_view_user_alphabet);
@@ -185,7 +185,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private ImageView imgViewUser;
         private TextView txtChatMessage;
 
-        public OtherChatViewHolder(View itemView) {
+        OtherChatViewHolder(View itemView) {
             super(itemView);
             txtChatMessage = (TextView) itemView.findViewById(R.id.text_view_chat_message);
             imgViewUser = (ImageView) itemView.findViewById(R.id.text_view_user_alphabet);

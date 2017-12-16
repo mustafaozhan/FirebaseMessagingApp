@@ -126,16 +126,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
 
                     FirebaseStorage storage = FirebaseStorage.getInstance();
-                    StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
+                    StorageReference storageRef = storage.getReferenceFromUrl(getActivity().getResources().getString(R.string.storage_link));
                     storageRef.child("profilePictures/" + snapshot.child("email").getValue().toString() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
 
                             try {
                                 Glide.with(getActivity())
-                                        .load("" + uri.toString())
-                                        .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
-                                        .into(ivImage);
+                                     .load("" + uri.toString())
+                                     .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                                     .into(ivImage);
                             } catch (Exception e) {
                                 Log.d(getTag(), "Connection too slow before download picture, picture saved");
                             }
@@ -219,7 +219,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             saveUsername();
             saveStatus();
             saveProfilePicture(((BitmapDrawable) ivImage.getDrawable()).getBitmap());
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -244,7 +244,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     StorageReference storageRef = storage.getReferenceFromUrl(getActivity().getResources().getString(R.string.storage_link));
                     StorageReference mountainImagesRef = storageRef.child("profilePictures/" + email[0] + ".jpg");
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    Bitmap converetdImage = getResizedBitmap(bitmap, 480);
+                    Bitmap converetdImage = getResizedBitmap(bitmap);
                     converetdImage.compress(Bitmap.CompressFormat.JPEG, 70, baos);
 
                     byte[] data = baos.toByteArray();
@@ -284,7 +284,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -292,7 +292,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         cameraIntent();
                     else if (userChoosenTask.equals("Choose from Gallery"))
                         galleryIntent();
-                } else {
                 }
                 break;
         }
@@ -326,6 +325,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        assert thumbnail != null;
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File destination = new File(Environment.getExternalStorageDirectory(),
                 System.currentTimeMillis() + ".jpg");
@@ -344,16 +344,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+    public Bitmap getResizedBitmap(Bitmap image) {
         int width = image.getWidth();
         int height = image.getHeight();
 
         float bitmapRatio = (float) width / (float) height;
         if (bitmapRatio > 1) {
-            width = maxSize;
+            width = 480;
             height = (int) (width / bitmapRatio);
         } else {
-            height = maxSize;
+            height = 480;
             width = (int) (height * bitmapRatio);
         }
         return Bitmap.createScaledBitmap(image, width, height, true);

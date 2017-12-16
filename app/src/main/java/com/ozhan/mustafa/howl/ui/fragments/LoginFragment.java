@@ -3,7 +3,6 @@ package com.ozhan.mustafa.howl.ui.fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -102,11 +101,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     }
 
     private void onRegister(View view) {
-        RegisterActivity.Companion.startActivity(getActivity());
+        RegisterActivity.startActivity(getActivity());
     }
 
     @Override
-    public void onLoginSuccess(@NonNull String message) {
+    public void onLoginSuccess(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Logged in successfully", Toast.LENGTH_SHORT).show();
         MainActivity.startActivity(getActivity(),
@@ -114,7 +113,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     }
 
     @Override
-    public void onLoginFailure(@NonNull String message) {
+    public void onLoginFailure(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
     }

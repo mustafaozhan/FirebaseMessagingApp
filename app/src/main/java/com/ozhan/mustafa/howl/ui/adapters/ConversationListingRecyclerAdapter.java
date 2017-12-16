@@ -2,10 +2,8 @@ package com.ozhan.mustafa.howl.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +14,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ozhan.mustafa.howl.R;
@@ -35,8 +28,8 @@ import java.util.List;
 
 public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<ConversationListingRecyclerAdapter.ViewHolder> {
     private List<User> mUsers;
-    private Context context;
 
+    private Context context;
     public ConversationListingRecyclerAdapter(List<User> users) {
         this.mUsers = users;
     }
@@ -49,7 +42,7 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_all_user_listing, parent, false);
-        context = parent.getContext();
+        context =parent.getContext();
         return new ViewHolder(view);
     }
 
@@ -65,15 +58,16 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
 //        holder.txtUsername.setTypeface(null, Typeface.BOLD);
 
 
+
         try {
-            holder.txtUsername.setText(user.getNameAndSurname());
+            holder.txtUsername.setText(user.nameAndSurname);
         } catch (Exception e) {
-            holder.txtUsername.setText(user.getEmail());
+            holder.txtUsername.setText(user.email);
         }
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(context.getResources().getString(R.string.storage_link));
-        storageRef.child("profilePictures/" + user.getEmail() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageRef.child("profilePictures/" + user.email + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
 
@@ -83,7 +77,7 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
                             .load("" + uri.toString())
                             .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
                             .into(holder.imgViewUser);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
 
                 }
             }
@@ -94,7 +88,7 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
             public void onClick(View v) {
                 Intent intent = new Intent(holder.imgViewUser.getContext(), ProfileActivity.class);
                 Bundle b = new Bundle();
-                b.putString("key", user.getEmail()); //Your id
+                b.putString("key", user.email); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 holder.imgViewUser.getContext().startActivity(intent);
 
@@ -125,8 +119,8 @@ public class ConversationListingRecyclerAdapter extends RecyclerView.Adapter<Con
             super(itemView);
             imgViewUser = (ImageView) itemView.findViewById(R.id.user_photo);
             txtUsername = (TextView) itemView.findViewById(R.id.text_view_username);
-            //  txtLastMessage = (TextView) itemView.findViewById(R.id.text_view_last_message);
-            // txtNotificationCount = (TextView) itemView.findViewById(R.id.text_view_notification_count);
+          //  txtLastMessage = (TextView) itemView.findViewById(R.id.text_view_last_message);
+           // txtNotificationCount = (TextView) itemView.findViewById(R.id.text_view_notification_count);
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.ozhan.mustafa.howl.ui.adapters;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -32,7 +34,7 @@ import java.util.List;
 
 public class NotificationRecyclerAdapter extends RecyclerView.Adapter<NotificationRecyclerAdapter.ViewHolder> {
     private List<User> mUsers;
-
+    private Context context;
 
     public NotificationRecyclerAdapter(List<User> users) {
         this.mUsers = users;
@@ -46,16 +48,17 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notification_friend_request, parent, false);
+        context = parent.getContext();
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final NotificationRecyclerAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final NotificationRecyclerAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final User user = mUsers.get(position);
         holder.mBttnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SubmitNotificationAnswer("accepted", mUsers.get(position).getUid());
+                SubmitNotificationAnswer("accepted", mUsers.get(position).uid);
                 mUsers.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, mUsers.size());
@@ -66,7 +69,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         holder.mBttnIgnore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SubmitNotificationAnswer("ignored", mUsers.get(position).getUid());
+                SubmitNotificationAnswer("ignored", mUsers.get(position).uid);
                 mUsers.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, mUsers.size());
@@ -75,7 +78,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
         holder.mBttnBlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SubmitNotificationAnswer("blocked", mUsers.get(position).getUid());
+                SubmitNotificationAnswer("blocked", mUsers.get(position).uid);
                 mUsers.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, mUsers.size());
@@ -88,18 +91,18 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
 
         //  holder.txtLastMessage.setText(user.email);
         try {
-            holder.txtUsername.setText(user.getNameAndSurname());
-            alphabet = user.getNameAndSurname().substring(0, 1);
+            holder.txtUsername.setText(user.nameAndSurname);
+            alphabet = user.nameAndSurname.substring(0, 1);
         } catch (Exception e) {
-            holder.txtUsername.setText(user.getEmail());
-            alphabet = user.getEmail().substring(0, 1);
+            holder.txtUsername.setText(user.email);
+            alphabet = user.email.substring(0, 1);
         }
 
         //  holder.txtUserAlphabet.setText(alphabet);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(String.valueOf(R.string.storage_link));
-        storageRef.child("profilePictures/" + user.getEmail() + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        StorageReference storageRef = storage.getReferenceFromUrl(context.getResources().getString(R.string.storage_link));
+        storageRef.child("profilePictures/" + user.email + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
 
@@ -109,7 +112,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
                             .load("" + uri.toString())
                             .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
                             .into(holder.imgViewUser);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
 
                 }
             }
@@ -119,7 +122,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
             public void onClick(View v) {
                 Intent intent = new Intent(holder.imgViewUser.getContext(), ProfileActivity.class);
                 Bundle b = new Bundle();
-                b.putString("key", user.getEmail()); //Your id
+                b.putString("key", user.email); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 holder.imgViewUser.getContext().startActivity(intent);
 
@@ -133,14 +136,14 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         mDatabase.child("friendRequest").child(uid).setValue(answer);
-        DatabaseReference otherOne=FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("friends");
-        if(answer.equals("accepted")){
+        DatabaseReference otherOne = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("friends");
+        if (answer.equals("accepted")) {
 
             mDatabase.child("friends").child(uid).setValue(true);
             otherOne.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(true);
 
 
-        }else {
+        } else {
             mDatabase.child("friends").child(uid).setValue(false);
             otherOne.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(false);
         }
@@ -159,9 +162,6 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
     public User getUser(int position) {
         return mUsers.get(position);
     }
-
-
-
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {

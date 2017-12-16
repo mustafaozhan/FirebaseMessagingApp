@@ -3,7 +3,6 @@ package com.ozhan.mustafa.howl.ui.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -76,7 +75,7 @@ public class UsersFragment extends Fragment implements GetUsersContract.View, Sw
             }
         });
 
-        ItemClickSupport.Companion.addTo(mRecyclerViewAllUserListing)
+        ItemClickSupport.addTo(mRecyclerViewAllUserListing)
                 .setOnItemClickListener(this);
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -92,13 +91,13 @@ public class UsersFragment extends Fragment implements GetUsersContract.View, Sw
     }
 
     @Override
-    public void onItemClicked(@NonNull RecyclerView recyclerView, final int position, @NonNull View v) {
+    public void onItemClicked(RecyclerView recyclerView, final int position, View v) {
         String value;
 
         try {
-            value = mUserListingRecyclerAdapter.getUser(position).getNameAndSurname();
+            value = mUserListingRecyclerAdapter.getUser(position).nameAndSurname;
         } catch (Exception e) {
-            value = mUserListingRecyclerAdapter.getUser(position).getEmail();
+            value = mUserListingRecyclerAdapter.getUser(position).email;
         }
 //        ChatActivity.startActivity(getActivity(),
 //                value,
@@ -131,7 +130,7 @@ public class UsersFragment extends Fragment implements GetUsersContract.View, Sw
 
 
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
-        database.orderByChild("email").equalTo(mUserListingRecyclerAdapter.getUser(position).getEmail()).addChildEventListener(new ChildEventListener() {
+        database.orderByChild("email").equalTo(mUserListingRecyclerAdapter.getUser(position).email).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 

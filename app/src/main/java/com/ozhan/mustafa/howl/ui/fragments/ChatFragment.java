@@ -44,9 +44,9 @@ public class ChatFragment extends Fragment implements ChatContract.View, View.On
 
     public static ChatFragment newInstance(String receiver, String receiverUid, String firebaseToken) {
         Bundle args = new Bundle();
-        args.putString(Constants.INSTANCE.getARG_RECEIVER(), receiver);
-        args.putString(Constants.INSTANCE.getARG_RECEIVER_UID(), receiverUid);
-        args.putString(Constants.INSTANCE.getARG_FIREBASE_TOKEN(), firebaseToken);
+        args.putString(Constants.ARG_RECEIVER, receiver);
+        args.putString(Constants.ARG_RECEIVER_UID, receiverUid);
+        args.putString(Constants.ARG_FIREBASE_TOKEN, firebaseToken);
         ChatFragment fragment = new ChatFragment();
         fragment.setArguments(args);
         return fragment;
@@ -125,7 +125,7 @@ public class ChatFragment extends Fragment implements ChatContract.View, View.On
 
         mChatPresenter = new ChatPresenter(this);
         mChatPresenter.getMessage(FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                getArguments().getString(Constants.INSTANCE.getARG_RECEIVER_UID()));
+                getArguments().getString(Constants.ARG_RECEIVER_UID));
     }
 //
 //    @Override
@@ -143,11 +143,11 @@ public class ChatFragment extends Fragment implements ChatContract.View, View.On
         String message = mETxtMessage.getText().toString();
         mETxtMessage.setText("");
         if (!message.equals("")) {
-            String receiver = getArguments().getString(Constants.INSTANCE.getARG_RECEIVER());
-            String receiverUid = getArguments().getString(Constants.INSTANCE.getARG_RECEIVER_UID());
+            String receiver = getArguments().getString(Constants.ARG_RECEIVER);
+            String receiverUid = getArguments().getString(Constants.ARG_RECEIVER_UID);
             String sender = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             String senderUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            String receiverFirebaseToken = getArguments().getString(Constants.INSTANCE.getARG_FIREBASE_TOKEN());
+            String receiverFirebaseToken = getArguments().getString(Constants.ARG_FIREBASE_TOKEN);
             Chat chat = new Chat(sender,
                     receiver,
                     senderUid,

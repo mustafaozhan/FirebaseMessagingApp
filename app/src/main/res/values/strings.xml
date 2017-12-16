@@ -25,7 +25,7 @@
     <string name="save">Save</string>
     <string name="nameAndSurname">Name and Surname</string>
     <string name="status">Status</string>
-    <string name="storage_link">gs://howl-159917.appspot.com/</string>
+    <string name="storage_link">gs://howl-159917.appspot.com</string>
 
 
 </resources>

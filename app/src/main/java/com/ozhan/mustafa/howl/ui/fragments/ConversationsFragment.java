@@ -1,7 +1,6 @@
 package com.ozhan.mustafa.howl.ui.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -66,7 +65,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
             }
         });
 
-        ItemClickSupport.Companion.addTo(mRecyclerViewConversations)
+        ItemClickSupport.addTo(mRecyclerViewConversations)
                 .setOnItemClickListener(this);
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -86,22 +85,22 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
     }
 
     @Override
-    public void onItemClicked(@NonNull RecyclerView recyclerView, int position, @NonNull View v) {
+    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
         String value;
 
         try {
-            value = mConversationsRecyclerAdapter.getUser(position).getNameAndSurname();
+            value = mConversationsRecyclerAdapter.getUser(position).nameAndSurname;
         } catch (Exception e) {
-            value = mConversationsRecyclerAdapter.getUser(position).getEmail();
+            value = mConversationsRecyclerAdapter.getUser(position).email;
         }
         ChatActivity.startActivity(getActivity(),
                 value,
-                mConversationsRecyclerAdapter.getUser(position).getUid(),
-                mConversationsRecyclerAdapter.getUser(position).getFirebaseToken());
+                mConversationsRecyclerAdapter.getUser(position).uid,
+                mConversationsRecyclerAdapter.getUser(position).firebaseToken);
     }
 
     @Override
-    public void onGetAllUsersSuccess(@NonNull List<User> users) {
+    public void onGetAllUsersSuccess(List<User> users) {
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -121,7 +120,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
     }
 
     @Override
-    public void onGetAllUsersFailure(@NonNull String message) {
+    public void onGetAllUsersFailure(String message) {
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -143,7 +142,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
     }
 
     @Override
-    public void onGetChatUsersSuccess(@NonNull List<User> users) {
+    public void onGetChatUsersSuccess(List<User> users) {
         mConversationsRecyclerAdapter = new ConversationListingRecyclerAdapter(users);
         mRecyclerViewConversations.setAdapter(mConversationsRecyclerAdapter);
         mConversationsRecyclerAdapter.notifyDataSetChanged();
@@ -151,7 +150,7 @@ public class ConversationsFragment extends Fragment implements GetUsersContract.
     }
 
     @Override
-    public void onGetChatUsersFailure(@NonNull String message) {
+    public void onGetChatUsersFailure(String message) {
 
     }
 }
