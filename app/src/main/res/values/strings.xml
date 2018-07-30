@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Howl</string>
+    <string name="app_name">Firebase Messaging App</string>
     <string name="action_settings">Settings</string>
     <string name="email">Email Id</string>
     <string name="password">Password</string>
