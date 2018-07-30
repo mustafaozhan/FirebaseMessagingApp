@@ -1,11 +1,10 @@
 # Howl
 <p align="center">
 Firebase Instant Messaging and Push Notification App with Firebase Database and Storage technology.
+  This is an old project and same time my finishing thesis for university.
 </p>
 
-<p align="center">
-<a href="https://play.google.com/store/apps/details?id=com.ozhan.mustafa.howl">Google Play Store</a>
-</p>
+<p align="center"><a href="https://play.google.com/store/apps/details?id=com.ozhan.mustafa.howl"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"></a></p>
 
 <p align="center">
 Register with mail
