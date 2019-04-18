@@ -37,3 +37,8 @@ You can change your profile informations and when you do not want to get notific
 <p align="center">
 <img src="https://s19.postimg.cc/fqt2v2v4z/image.png" width="250px" /> <img src="https://s19.postimg.cc/tkhfk48ar/image.png" width="250px" />
 </p>
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/mustafaozhan/FirebaseMessagingApp/badge.svg?style=beer-square)](https://beerpay.io/mustafaozhan/FirebaseMessagingApp)  [![Beerpay](https://beerpay.io/mustafaozhan/FirebaseMessagingApp/make-wish.svg?style=flat-square)](https://beerpay.io/mustafaozhan/FirebaseMessagingApp?focus=wish)
