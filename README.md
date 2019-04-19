@@ -4,7 +4,7 @@ Firebase Instant Messaging and Push Notification App with Firebase Database and 
   This is an old project and same time my finishing thesis for university.
 </p>
 
-<p align="center"><a href="https://play.google.com/store/apps/details?id=com.ozhan.mustafa.howl"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"></a></p>
+<p align="center"><a href='https://ko-fi.com/B0B2TZMH' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a></p>
 
 <p align="center">
 Register with mail
@@ -37,8 +37,3 @@ You can change your profile informations and when you do not want to get notific
 <p align="center">
 <img src="https://s19.postimg.cc/fqt2v2v4z/image.png" width="250px" /> <img src="https://s19.postimg.cc/tkhfk48ar/image.png" width="250px" />
 </p>
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/mustafaozhan/FirebaseMessagingApp/badge.svg?style=beer-square)](https://beerpay.io/mustafaozhan/FirebaseMessagingApp)  [![Beerpay](https://beerpay.io/mustafaozhan/FirebaseMessagingApp/make-wish.svg?style=flat-square)](https://beerpay.io/mustafaozhan/FirebaseMessagingApp?focus=wish)
